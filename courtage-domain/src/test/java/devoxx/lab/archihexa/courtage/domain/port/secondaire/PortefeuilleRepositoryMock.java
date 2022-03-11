@@ -5,6 +5,7 @@ import devoxx.lab.archihexa.courtage.domain.model.Portefeuille;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class PortefeuilleRepositoryMock implements PortefeuilleRepository {
 	private final Map<String, Portefeuille> portefeuilles;
@@ -26,5 +27,10 @@ public class PortefeuilleRepositoryMock implements PortefeuilleRepository {
 	@Override
 	public Optional<Portefeuille> recupere(String id) {
 		return Optional.ofNullable(portefeuilles.get(id));
+	}
+
+	@Override
+	public Stream<Portefeuille> recupereTous() {
+		return portefeuilles.values().stream();
 	}
 }
