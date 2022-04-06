@@ -26,8 +26,6 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class CourtageStepDefinitions implements Fr {
 	static {
 		// Pour s'assurer des messages BeanValidation en Fr
