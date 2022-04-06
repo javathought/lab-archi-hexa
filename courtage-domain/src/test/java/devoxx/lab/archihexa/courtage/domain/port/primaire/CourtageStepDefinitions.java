@@ -1,7 +1,11 @@
 package devoxx.lab.archihexa.courtage.domain.port.primaire;
 
+import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleDejaExistantException;
+import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleNonGereException;
 import devoxx.lab.archihexa.courtage.domain.model.Achat;
 import devoxx.lab.archihexa.courtage.domain.model.Portefeuille;
+import devoxx.lab.archihexa.courtage.domain.port.secondaire.PortefeuilleRepository;
+import devoxx.lab.archihexa.courtage.domain.port.secondaire.PortefeuilleRepositoryMock;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java8.DataTableEntryDefinitionBody;
 import io.cucumber.java8.Fr;
@@ -30,15 +34,24 @@ public class CourtageStepDefinitions implements Fr {
 
 	private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
-	private final ServiceCourtage serviceCourtage = new Courtage();
+	// Afin de se rapprocher au mieux d'un repository persistant, celui-ci doit être réutilisé entre les différents scénarios
+	private static final PortefeuilleRepository portefeuilleRepository = new PortefeuilleRepositoryMock();
+
+	private final ServiceCourtage serviceCourtage = new Courtage(portefeuilleRepository);
 	private Portefeuille portefeuilleCree;
+	private Exception thrownException = null;
+	private BigDecimal valeurPortefeuille = null;
 
 	private Achat achat;
 
 	public CourtageStepDefinitions() {
 		// étape 1
 		Quand("on demande au service de courtage la création du portefeuille {string}", (String nomPortefeuille) -> {
-			portefeuilleCree = serviceCourtage.creerPortefeuille(nomPortefeuille);
+			try {
+				portefeuilleCree = serviceCourtage.creerPortefeuille(nomPortefeuille);
+			} catch (PortefeuilleDejaExistantException e) {
+				thrownException = e;
+			}
 		});
 		Alors("l'id du portefeuille créé doit être {string}", (String nomPortefeuille) ->
 			assertThat(portefeuilleCree.getNom()).isEqualTo(nomPortefeuille));
@@ -46,21 +59,20 @@ public class CourtageStepDefinitions implements Fr {
 			assertThat(serviceCourtage.gere(nomPortefeuille)).isTrue());
 
 		// étape 2
-		Alors("le portefeuille {string} n'est pas géré par le service de courtage", (String nomPortefeuille) -> {
-			throw new io.cucumber.java8.PendingException();
-		});
-		Alors("une exception est levée : Portefeuille déjà géré", () -> {
-			throw new io.cucumber.java8.PendingException();
-		});
+		Alors("le portefeuille {string} n'est pas géré par le service de courtage", (String nomPortefeuille) -> assertThat(serviceCourtage.gere(nomPortefeuille)).isFalse());
+		Alors("une exception est levée : Portefeuille déjà géré", () ->
+			assertThat(thrownException).isInstanceOf(PortefeuilleDejaExistantException.class));
 		Quand("on demande le calcul de la valeur du portefeuille {string}", (String nomPortefeuille) -> {
-			throw new io.cucumber.java8.PendingException();
+			try {
+				valeurPortefeuille = serviceCourtage.calculerValeurPortefeuille(nomPortefeuille);
+			} catch (PortefeuilleNonGereException e) {
+				thrownException = e;
+			}
 		});
-		Alors("la valeur du portefeuille est {bigdecimal}", (BigDecimal valeur) -> {
-			throw new io.cucumber.java8.PendingException();
-		});
-		Alors("une exception est levée : Portefeuille non géré", () -> {
-			throw new io.cucumber.java8.PendingException();
-		});
+		Alors("la valeur du portefeuille est {bigdecimal}", (BigDecimal valeur) ->
+			assertThat(valeurPortefeuille).isEqualByComparingTo(valeur));
+		Alors("une exception est levée : Portefeuille non géré", () ->
+			assertThat(thrownException).isInstanceOf(PortefeuilleNonGereException.class));
 
 		// étape 3
 		DataTableType(CoursBourse.CONVERTER);
