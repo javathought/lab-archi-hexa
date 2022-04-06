@@ -4,36 +4,35 @@ import devoxx.lab.archihexa.courtage.domain.model.Portefeuille;
 import devoxx.lab.archihexa.courtage.domain.port.secondaire.PortefeuilleRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Repository
-public class PortefeuilleRepositoryInMemoryImpl implements PortefeuilleRepository {
-	private final Map<String, Portefeuille> portefeuilles;
+public class PortefeuilleRepositorySpringDataImpl implements PortefeuilleRepository {
+	private final PortefeuilleSpringDataCrudRepository repo;
 
-	public PortefeuilleRepositoryInMemoryImpl() {
-		portefeuilles = new HashMap<>();
+	public PortefeuilleRepositorySpringDataImpl(PortefeuilleSpringDataCrudRepository repo) {
+		this.repo = repo;
 	}
 
 	@Override
 	public boolean existe(String nomPortefeuille) {
-		return portefeuilles.containsKey(nomPortefeuille);
+		return repo.existsById(nomPortefeuille);
 	}
 
 	@Override
 	public void sauvegarde(Portefeuille portefeuille) {
-		portefeuilles.put(portefeuille.getNom(), portefeuille);
+		repo.save(portefeuille);
 	}
 
 	@Override
 	public Optional<Portefeuille> recupere(String id) {
-		return Optional.ofNullable(portefeuilles.get(id));
+		return repo.findById(id);
 	}
 
 	@Override
 	public Stream<Portefeuille> recupereTous() {
-		return portefeuilles.values().stream();
+		return StreamSupport.stream(repo.findAll().spliterator(), false);
 	}
 }
