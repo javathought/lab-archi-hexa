@@ -13,7 +13,7 @@ effectuer les actions suivantes **avant** le début du lab<br/>
 
 ```bash
 git clone https://github.com/javathought/lab-archi-hexa
-cd devoxx-lab-architecture-hexagonale
+cd lab-archi-hexa
 git switch main && ./mvnw dependency:go-offline
 ```
 

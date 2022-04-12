@@ -5,6 +5,9 @@
 		"reveal-md": "5.3.2",
 		"fflate": "0.7.3"
 	},
+	"overrides": {
+		"reveal.js": ">4.3.0"
+	},
 	"scripts": {
 		"keynote": "reveal-md ../README.md --preprocessor preproc.js",
 		"keynote-live-reload": "reveal-md ../README.md --preprocessor preproc.js -w",
