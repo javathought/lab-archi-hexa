@@ -42,7 +42,7 @@ Note: **Autres ressources**
 
 ---
 
-## Vos "accompagnateurs" pour ce lab ...
+## Vos "accompagnateurs" pour ce lab
 
 <table>
 <tr>
@@ -50,10 +50,12 @@ Note: **Autres ressources**
 	<th scope="col" style="text-align:center">JY</th>
 </tr>
 <tr>
-	<td><img src="https://s3.amazonaws.com/garmin-connect-prod/profile_images/1b691e8a-88f0-4237-92d9-5def9ae7e8e4-1363476.png" alt="" width="300"/></td>
-	<td><img src="https://lh3.googleusercontent.com/a-/AOh14GhY9dkmjmpi-s_E41iik_7C2_gCQPnm_nSzop9KSg=s576-p-rw-no" alt="" width="300"/></td>
+	<td><img src="https://s3.amazonaws.com/garmin-connect-prod/profile_images/1b691e8a-88f0-4237-92d9-5def9ae7e8e4-1363476.png" alt="" width="200"/></td>
+	<td><img src="https://lh3.googleusercontent.com/a-/AOh14GhY9dkmjmpi-s_E41iik_7C2_gCQPnm_nSzop9KSg=s576-p-rw-no" alt="" width="200"/></td>
 </tr>
 </table>
+
+![logo Crédit Agricole Payment Services](./images/caps-h-rvb.png)<!-- .element height="33%" width="33%" -->
 
 ---
 
