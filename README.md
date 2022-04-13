@@ -85,9 +85,40 @@ Note:
 * Feedback de dev :
 	* Pas besoin de démarrer toute la stack pour tester le métier
 
+---
+
+## Différentes orientations
+
+```plantuml
+@startuml
+allowmixing
+skinparam packageStyle rectangle
+skinparam package.backgroundColor white
+hide empty members
+
+namespace "Classique : en couche" as classique {
+	namespace API {
+		class CourtageResource
+	}
+	namespace Domaine {
+		class Courtage
+	}
+	namespace Persistance {
+		class PortefeuilleRepositorySpringDataImpl
+	}
+	classique.Domaine.Courtage ..>  classique.Persistance.PortefeuilleRepositorySpringDataImpl : utilise
+	classique.API.CourtageResource ..> classique.Domaine.Courtage : utilise
+}
+
+@enduml
+```
+
+Note: Les principes de "Clean Architecture" → Le domaine métier : au centre
+
 ----
 
 ## Différentes orientations
+
 
 ```plantuml
 @startuml
@@ -114,20 +145,20 @@ package "Centrée sur le métier" as hex {
 		class CourtageResource
 	}
 	package Domaine <<Hexagon>> {
+		interface CourtageService
 		class Courtage
 		interface PortefeuilleRepository
 	}
 	package Persistance {
 		class PortefeuilleRepositorySpringDataImpl
 	}
-	CourtageResource ..> Courtage : utilise
+	CourtageResource ..> CourtageService : utilise
+	CourtageService <|.. Courtage
 	Courtage ..>  PortefeuilleRepository : utilise
 	PortefeuilleRepository <|.. PortefeuilleRepositorySpringDataImpl
 }
 @enduml
 ```
-
-Note: Les principes de "Clean Architecture" → Le domaine métier : au centre
 
 ---
 
