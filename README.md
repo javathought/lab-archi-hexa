@@ -6,16 +6,23 @@
 
 **☛ <u>à faire impérativement AVANT le Lab !!!</u> ☚**
 
-Pour améliorer au maximum votre confort dans le déroulement de ce lab :<br/>
+Pour améliorer votre confort dans le déroulement de ce lab :<br/><br/>
 effectuer les actions suivantes **avant** le début du lab<br/>
 ... de préférence chez vous<br/>
-(avec une bonne connexion internet)
+(avec une bonne connexion internet)<br/><br/>
 
 ```bash
 git clone https://github.com/javathought/lab-archi-hexa
 cd lab-archi-hexa
 git switch main && ./mvnw dependency:go-offline
 ```
+----
+
+## Wifi
+
+- SSID ateliers lab : <code>devoxxfr-hol</code> 
+- Mot de passe : <code>hola#4321</code>
+
 
 ----
 

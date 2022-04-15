@@ -9,8 +9,8 @@
 		"reveal.js": ">4.3.0"
 	},
 	"scripts": {
-		"keynote": "reveal-md ../README.md --preprocessor preproc.js",
-		"keynote-live-reload": "reveal-md ../README.md --preprocessor preproc.js -w",
+		"keynote": "reveal-md ../README.md --preprocessor preproc.js -css theme/caps.css",
+		"keynote-live-reload": "reveal-md ../README.md --preprocessor preproc.js -css theme/caps.css -w",
 		"html": "reveal-md ../README.md --preprocessor preproc.js --static ..",
 		"pdf": "reveal-md ../README.md --preprocessor preproc.js --print keynote.pdf"
 	}
