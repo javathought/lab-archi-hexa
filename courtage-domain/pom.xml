@@ -64,6 +64,10 @@
 			<artifactId>javax.el</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>jakarta.inject</groupId>
+			<artifactId>jakarta.inject-api</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

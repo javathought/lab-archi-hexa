@@ -1,4 +1,4 @@
-/.db/
+.db/
 /.gradle/
 /.idea/
 /.mvn/wrapper/maven-wrapper.jar
@@ -8,9 +8,5 @@ build/
 *.tmp
 tmp.*
 node_modules/
-/.speaker/plantumlGenerated/
 /index.html
 /favicon.ico
-/dist/
-/plugin/
-/css/

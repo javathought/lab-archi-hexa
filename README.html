@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Architecture Hexagonale - DevoxxFR Lab</title>
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./dist/reset.css" />
-    <link rel="stylesheet" href="./dist/reveal.css" />
-    <link rel="stylesheet" href="/_assets/theme/theme.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="shortcut icon" href=".speaker/keynote_assets/favicon.ico" />
+    <link rel="stylesheet" href=".speaker/keynote_assets/dist/reset.css" />
+    <link rel="stylesheet" href=".speaker/keynote_assets/dist/reveal.css" />
+    <link rel="stylesheet" href=".speaker/theme/theme.css" id="theme" />
+    <link rel="stylesheet" href=".speaker/keynote_assets/css/highlight/zenburn.css" />
 
 
   </head>
@@ -21,16 +21,21 @@
 
 **☛ <u>à faire impérativement AVANT le Lab !!!</u> ☚**
 
-Pour améliorer au maximum votre confort dans le déroulement de ce lab :<br/>
+Pour améliorer votre confort dans le déroulement de ce lab :<br/><br/>
 effectuer les actions suivantes **avant** le début du lab<br/>
 ... de préférence chez vous<br/>
-(avec une bonne connexion internet)
+(avec une bonne connexion internet)<br/><br/>
 
 ```bash
 git clone https://github.com/javathought/lab-archi-hexa
 cd lab-archi-hexa
 git switch main && ./mvnw dependency:go-offline
-```
+```</script></section><section data-markdown><script type="text/template">
+## Wifi
+
+- SSID ateliers lab : <code>devoxxfr-hol</code> 
+- Mot de passe : <code>hola#4321</code>
+
 </script></section><section data-markdown><script type="text/template">
 ## Prérequis pour ce lab
 
@@ -41,10 +46,10 @@ git switch main && ./mvnw dependency:go-offline
 </script></section><section data-markdown><script type="text/template">
 ## Envie de se familiariser avec les concepts avant ?
 
-- [Pérennisez votre métier avec l’architecture hexagonale <small>(Publicis Sapient - ex: Xebia)</small>](https://blog.xebia.fr/2016/03/16/perennisez-votre-metier-avec-larchitecture-hexagonale/)
-- [Architecture Hexagonale : trois principes et un exemple d’implémentation <small>(Octo)</small>](https://blog.octo.com/architecture-hexagonale-trois-principes-et-un-exemple-dimplementation/)
-- [Architecture hexagonale pour les nuls <small>(Y. Chéné - Devoxx FR 2018)</small>](https://www.youtube.com/watch?v=Hi5aDfRe-aE)
-- [Architecture hexagonale <small>(Eleven Labs)</small>](https://blog.eleven-labs.com/fr/architecture-hexagonale/)
+- [Pérennisez votre métier avec l’architecture hexagonale <span class="small">(Publicis Sapient - ex: Xebia)</span>](https://blog.xebia.fr/2016/03/16/perennisez-votre-metier-avec-larchitecture-hexagonale/)
+- [Architecture Hexagonale : trois principes et un exemple d’implémentation <span class="small">(Octo)</span>](https://blog.octo.com/architecture-hexagonale-trois-principes-et-un-exemple-dimplementation/)
+- [Architecture hexagonale pour les nuls <span class="small">(Y. Chéné - Devoxx FR 2018)</span>](https://www.youtube.com/watch?v=Hi5aDfRe-aE)
+- [Architecture hexagonale <span class="small">(Eleven Labs)</span>](https://blog.eleven-labs.com/fr/architecture-hexagonale/)
 
 <aside class="notes"><p><strong>Autres ressources</strong></p>
 <ul>
@@ -52,18 +57,20 @@ git switch main && ./mvnw dependency:go-offline
 <li><a href="https://en.wikibooks.org/wiki/Java_Persistence/ElementCollection#Example_of_a_ElementCollection_relationship_to_a_basic_value_XML">WikiBooks - Java Persistence/ElementCollection - Example of a ElementCollection relationship to a basic value XML</a></li>
 </ul>
 </aside></script></section></section><section  data-markdown><script type="text/template">
-## Vos "accompagnateurs" pour ce lab ...
+## Vos "accompagnateurs" pour ce lab
 
 <table>
 <tr>
 	<th scope="col" style="text-align:center">Pascal</th>
-	<th scope="col" style="text-align:center">JY</th>
+	<th scope="col" style="text-align:center">Jean-Yves</th>
 </tr>
 <tr>
-	<td><img src="https://s3.amazonaws.com/garmin-connect-prod/profile_images/1b691e8a-88f0-4237-92d9-5def9ae7e8e4-1363476.png" alt="" width="300"/></td>
-	<td><img src="https://lh3.googleusercontent.com/a-/AOh14GhY9dkmjmpi-s_E41iik_7C2_gCQPnm_nSzop9KSg=s576-p-rw-no" alt="" width="300"/></td>
+	<td><img src="https://s3.amazonaws.com/garmin-connect-prod/profile_images/1b691e8a-88f0-4237-92d9-5def9ae7e8e4-1363476.png" alt="" width="200"/></td>
+	<td><img src="https://lh3.googleusercontent.com/a-/AOh14GhY9dkmjmpi-s_E41iik_7C2_gCQPnm_nSzop9KSg=s576-p-rw-no" alt="" width="200"/></td>
 </tr>
 </table>
+
+![logo Crédit Agricole Payment Services](.speaker/theme/caps.svg)<!-- .element height="33%" width="33%" -->
 </script></section><section  data-markdown><script type="text/template">
 ## Objectifs
 
@@ -71,7 +78,7 @@ Développer un petit système de courtage boursier
 
 → en s'appuyant sur une<br/>
 **architecture applicative hexagonale**
-</script></section><section ><section data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 ## L'architecture hexagonale ...
 
 ... pour répondre à certains enjeux comme :
@@ -92,33 +99,38 @@ Développer un petit système de courtage boursier
 </ul>
 </li>
 </ul>
+</aside></script></section><section ><section data-markdown><script type="text/template">
+## Différentes orientations
+
+<img src=".speaker/plantumlGenerated/plantuml-b42cce570a281e204222e7be5d166ea8.svg" alt=""/>
+
+<aside class="notes"><p>Les principes de &quot;Clean Architecture&quot; → Le domaine métier : au centre</p>
 </aside></script></section><section data-markdown><script type="text/template">
 ## Différentes orientations
 
-<img src=".speaker/plantumlGenerated/plantuml-936db20f0f383f67f29b1cb90d0c8ef4.svg" alt=""/>
 
-<aside class="notes"><p>Les principes de &quot;Clean Architecture&quot; → Le domaine métier : au centre</p>
-</aside></script></section></section><section ><section data-markdown><script type="text/template">
+<img src=".speaker/plantumlGenerated/plantuml-4a0d3f77680e1cf35a4d7eca30602325.svg" alt=""/>
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Organisation du lab
 
 ... en plusieurs étapes jusqu'à la solution finale :
 
-<img src=".speaker/plantumlGenerated/plantuml-7a9008ccb9171869ee65a6bdc08749c0.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-c8a0286be1f3e28b6a8a5ad2ef24c29a.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 ### Pour chaque étape ...
 
-* un tag Git<br/>
-  <small>partir duquel vous pourrez créer une branche pour vos développements</small>
-* les exigences à couvrir<br/>
-  <small>sous forme de scénarios écrit en langage [Gherkin](https://cucumber.io/docs/gherkin/)</small>
+* un tag Git
+  <div class="small">partir duquel vous pourrez créer une branche pour vos développements</div>
+* les exigences à couvrir
+  <div class="small">sous forme de scénarios écrit en <a href="https://cucumber.io/docs/gherkin/">langage Gherkin</a></div>
 </script></section><section data-markdown><script type="text/template">
 ### La structure de base du projet ...
 
 comporte :
 
 * une chaine de build Maven
-* une mise en place de Cucumber<br/>
-  <small>avec un embryon de "glue" pour faciliter l'exécution des exigences</small>
+* une mise en place de Cucumber
+  <div class="small">avec un embryon de "glue" pour faciliter l'exécution des exigences</div>
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Étape 1 : objectif
 
@@ -181,8 +193,8 @@ Point d'arrivée :
 ## Étape 2
 
 * Mise en oeuvre du *PortefeuilleRepository*
-* Création d'un bouchon<br/>
-  <small>(une implémentation basée sur `HashMap`, dans les packages de test, suffira)</small>
+* Création d'un bouchon
+  <div class="small">(une implémentation basée sur <code>HashMap</code>, dans les packages de test, suffira)</div>
 </script></section><section data-markdown><script type="text/template">
 ## Nouvelles exigences à couvrir
 
@@ -441,7 +453,7 @@ Point d'arrivée :
 ## Étape 5
 
 services métier via API REST<br/>
-**... sans modifier le code métier**
+**... sans modifier le code métier** <span class="small">(ou presque)</span>
 
 * module `courtage-application-springboot`
 	* avec un 1er service REST :<br/>
@@ -463,19 +475,19 @@ services métier via API REST<br/>
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-57da6b7033bfd45a96ea092cae28a406.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-11cac9e8a01d78ce744f06228cb4b666.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 ### Injection de dépendances
 
 2 orientations possibles :
-* Utilisation des annotations de l'API CDI<br/>
-  <small>(non liées à une implémentation technique)</small>
+* Utilisation des annotations de l'API <a href="https://jcp.org/en/jsr/detail?id=330">JSR 330: Dependency Injection for Java</a> <span class="small">(non liées à une implémentation technique)</span>
+  `javax.inject.Named`
 * Utilisation d'annotations spécifiques
 </script></section><section data-markdown><script type="text/template">
 ####  CDI avec annotation spécifique
 
-Définition d'une annotation<br/>
-<small>pour caractériser les services du domaine métier :</small>
+Définition d'une annotation
+<div class="small">pour caractériser les services du domaine métier :</div>
 
 ```java
 
@@ -529,7 +541,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-1082a015a1126db380de01ae04f9c242.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-c8be38f8e68cb3d6bfe2ccb6e491fc65.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 
@@ -577,7 +589,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-558fb106483f1d2e630ca77d8a92932e.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-16f5060d8581d06a40487c1d0f4c3391.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 
@@ -603,7 +615,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-42629c5f34c32dfa19341e6678cbded2.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-04faabf1c54d93965da8673ce29ab184.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 
@@ -622,19 +634,19 @@ Point d'arrivée :
 
 Nous avons vu :
 
-* mettre en œuvre une "clean architecture" (suivant les principes de l'architecture hexagonale)
+* mettre en œuvre une "clean architecture" <div class="small">suivant les principes de l'architecture hexagonale</div>
 * la gestion de la persistance avec Spring
 * la validation de la cohérence fonctionnelle des objets du domaine
 </script></section></div>
     </div>
 
-    <script src="./dist/reveal.js"></script>
+    <script src=".speaker/keynote_assets/dist/reveal.js"></script>
 
-    <script src="./plugin/markdown/markdown.js"></script>
-    <script src="./plugin/highlight/highlight.js"></script>
-    <script src="./plugin/zoom/zoom.js"></script>
-    <script src="./plugin/notes/notes.js"></script>
-    <script src="./plugin/math/math.js"></script>
+    <script src=".speaker/keynote_assets/plugin/markdown/markdown.js"></script>
+    <script src=".speaker/keynote_assets/plugin/highlight/highlight.js"></script>
+    <script src=".speaker/keynote_assets/plugin/zoom/zoom.js"></script>
+    <script src=".speaker/keynote_assets/plugin/notes/notes.js"></script>
+    <script src=".speaker/keynote_assets/plugin/math/math.js"></script>
     <script>
       function extend() {
         var target = {};
