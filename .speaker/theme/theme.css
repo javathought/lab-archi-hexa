@@ -67,3 +67,8 @@ html .reveal h6 {
 .nl {
 	display: block;
 }
+
+u {
+	color: orange;
+	text-decoration: none;
+}

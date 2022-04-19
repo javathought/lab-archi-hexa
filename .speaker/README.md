@@ -11,9 +11,10 @@ npm install && npm run keynote
 ```bash
 npm install && npm run html
 ```
-
-NB : De nombreuses petites adaptations restent à corriger dans les fichiers générés
-(cf. se référer aux ressources modifiés via `git status`).
+Les fichiers sont générés dans le répertoire `generatedKeynote.tmp` à la racine du projet.
+Seul le fichier `generatedKeynote.tmp/README.html` est à déplacer à la racine du projet, et certaines adaptations restent nécessaires
+(liens vers les ressource statiques, se référer aux ressources modifiés via `git status`).
+Le reste des fichiers générés peuvent être supprimés.
 
 ## Pour imprimer la Keynote en PDF
 

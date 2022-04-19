@@ -62,7 +62,7 @@ Note: **Autres ressources**
 </tr>
 </table>
 
-![logo Crédit Agricole Payment Services](./images/caps-h-rvb.png)<!-- .element height="33%" width="33%" -->
+![logo Crédit Agricole Payment Services](.speaker/theme/caps.svg)<!-- .element height="33%" width="33%" -->
 
 ---
 
@@ -133,6 +133,7 @@ allowmixing
 skinparam packageStyle rectangle
 skinparam package.backgroundColor white
 hide empty members
+scale 580 height
 
 namespace "Classique : en couche" as classique {
 	namespace API {
