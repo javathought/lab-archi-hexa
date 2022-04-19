@@ -38,7 +38,7 @@ public class CourtageResource {
 			.status(HttpStatus.BAD_REQUEST)
 			.body(e.getFieldErrors().stream()
 				.map(fe -> "\t" + fe.getField() + " " + fe.getDefaultMessage())
-				.collect(Collectors.joining("\n", "Donnée(s) erronée(s): \\n\"", "")));
+				.collect(Collectors.joining("\n", "Donnée(s) erronée(s):\n", "")));
 	}
 
 	@ExceptionHandler(PortefeuilleNonGereException.class)

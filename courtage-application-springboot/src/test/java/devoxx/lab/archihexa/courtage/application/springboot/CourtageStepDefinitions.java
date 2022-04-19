@@ -161,7 +161,7 @@ public class CourtageStepDefinitions implements Fr {
 			response
 				.assertThat()
 				.statusCode(400)
-				.body(equalTo("Donnée(s) erronée(s): \n" + "\t" + message)));
+				.body(equalTo("Donnée(s) erronée(s):\n" + "\t" + message)));
 	}
 
 	private static class CoursBourse {
