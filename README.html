@@ -115,7 +115,7 @@ Développer un petit système de courtage boursier
 
 ... en plusieurs étapes jusqu'à la solution finale :
 
-<img src=".speaker/plantumlGenerated/plantuml-4c53362abb360044b65f05890878bc64.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-c8a0286be1f3e28b6a8a5ad2ef24c29a.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 ### Pour chaque étape ...
 
@@ -475,16 +475,13 @@ services métier via API REST<br/>
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-89f4cd3dc3e6410ae8bb03472a68e134.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-11cac9e8a01d78ce744f06228cb4b666.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 ### Injection de dépendances
 
 2 orientations possibles :
-* Utilisation des annotations de l'API CDI <div class="small">(non liées à une implémentation technique)</div>
-  * `javax.annotation.ManagedBean`
-     <span class="small">*Jakarta Annotations API* (v1.x)</span>
-  * `jakarta.annotation.ManagedBean`
-     <span class="small">*Jakarta Annotations API* (v2.x)</span>
+* Utilisation des annotations de l'API <a href="https://jcp.org/en/jsr/detail?id=330">JSR 330: Dependency Injection for Java</a> <span class="small">(non liées à une implémentation technique)</span>
+  `javax.inject.Named`
 * Utilisation d'annotations spécifiques
 </script></section><section data-markdown><script type="text/template">
 ####  CDI avec annotation spécifique
@@ -544,7 +541,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-8d59f931680919dbf0672e487190181e.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-c8be38f8e68cb3d6bfe2ccb6e491fc65.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 
@@ -592,7 +589,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-4e3afa32c5159675ce6814389deefafc.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-16f5060d8581d06a40487c1d0f4c3391.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 
@@ -618,7 +615,7 @@ Point d'arrivée :
 <p style="margin:.5em;padding:.3em;background:#f8c291">Ressource modifiée</p>
 </details>
 
-<img src=".speaker/plantumlGenerated/plantuml-7816ad54e230a3c9f05733d38ef421b9.svg" alt=""/>
+<img src=".speaker/plantumlGenerated/plantuml-04faabf1c54d93965da8673ce29ab184.svg" alt=""/>
 </script></section><section data-markdown><script type="text/template">
 Point de départ (facultatif) :
 

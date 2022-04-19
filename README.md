@@ -189,7 +189,7 @@ package API {
 package Domaine <<Hexagon>> {
 	class PortefeuilleDejaExistantException
 	class PortefeuilleNonGereException
-	annotation ManagedBean
+	annotation Named
 	class Courtage
 	class Portefeuille {
 		String nom
@@ -232,7 +232,7 @@ package Adapters {
 RestController <.l. CourtageResource : est annotée
 CourtageResource ..> ServiceCourtage : utilise
 ServiceCourtage <|.. Courtage
-ManagedBean <.l. Courtage : est annotée
+Named <.l. Courtage : est annotée
 Courtage ..>  PortefeuilleRepository : utilise
 Courtage ..>  ServiceBourse : utilise
 ServiceBourse <|.. ServiceBourseHttpAdapter
@@ -906,7 +906,7 @@ package API {
 package Domaine <<Hexagon>> {
 	class PortefeuilleDejaExistantException
 	class PortefeuilleNonGereException
-	annotation ManagedBean <<ajout>>
+	annotation Named <<ajout>>
 	class Courtage <<modif>>
 	class Portefeuille {
 		String nom
@@ -941,7 +941,7 @@ package Adapters {
 RestController <.l. CourtageResource : est annotée
 CourtageResource ..> ServiceCourtage : utilise
 ServiceCourtage <|.. Courtage
-ManagedBean <.l. Courtage : est annotée
+Named <.l. Courtage : est annotée
 Courtage ..>  PortefeuilleRepository : utilise
 Courtage ..>  ServiceBourse : utilise
 PortefeuilleRepository <|.. PortefeuilleRepositoryMock
@@ -955,11 +955,8 @@ stepDefs -[bold]l-> CourtageResource : via RestAssured
 ### Injection de dépendances
 
 2 orientations possibles :
-* Utilisation des annotations de l'API CDI <div class="small">(non liées à une implémentation technique)</div>
-  * `javax.annotation.ManagedBean`
-     <span class="small">*Jakarta Annotations API* (v1.x)</span>
-  * `jakarta.annotation.ManagedBean`
-     <span class="small">*Jakarta Annotations API* (v2.x)</span>
+* Utilisation des annotations de l'API <a href="https://jcp.org/en/jsr/detail?id=330">JSR 330: Dependency Injection for Java</a> <span class="small">(non liées à une implémentation technique)</span>
+  `javax.inject.Named`
 * Utilisation d'annotations spécifiques
 
 ----
@@ -1062,7 +1059,7 @@ package API {
 package Domaine <<Hexagon>> {
 	class PortefeuilleDejaExistantException
 	class PortefeuilleNonGereException
-	annotation ManagedBean
+	annotation Named
 	class Courtage
 	class Portefeuille <<modif>> {
 		String nom
@@ -1099,7 +1096,7 @@ package Adapters {
 RestController <.l. CourtageResource : est annotée
 CourtageResource ..> ServiceCourtage : utilise
 ServiceCourtage <|.. Courtage
-ManagedBean <.l. Courtage : est annotée
+Named <.l. Courtage : est annotée
 Courtage ..>  PortefeuilleRepository : utilise
 Courtage ..>  ServiceBourse : utilise
 ServiceBourse <|.. ServiceBourseMock
@@ -1199,7 +1196,7 @@ package API {
 package Domaine <<Hexagon>> {
 	class PortefeuilleDejaExistantException
 	class PortefeuilleNonGereException
-	annotation ManagedBean
+	annotation Named
 	class Courtage
 	class Portefeuille {
 		String nom
@@ -1246,7 +1243,7 @@ end note
 RestController <.l. CourtageResource : est annotée
 CourtageResource ..> ServiceCourtage : utilise
 ServiceCourtage <|.. Courtage
-ManagedBean <.l. Courtage : est annotée
+Named <.l. Courtage : est annotée
 Courtage ..>  PortefeuilleRepository : utilise
 Courtage ..>  ServiceBourse : utilise
 ServiceBourse <|.. ServiceBourseHttpAdapter
@@ -1323,7 +1320,7 @@ package API {
 package Domaine <<Hexagon>> {
 	class PortefeuilleDejaExistantException
 	class PortefeuilleNonGereException
-	annotation ManagedBean
+	annotation Named
 	class Courtage
 	class Portefeuille {
 		String nom
@@ -1370,7 +1367,7 @@ end note
 RestController <.l. CourtageResource : est annotée
 CourtageResource ..> ServiceCourtage : utilise
 ServiceCourtage <|.. Courtage
-ManagedBean <.l. Courtage : est annotée
+Named <.l. Courtage : est annotée
 Courtage ..>  PortefeuilleRepository : utilise
 Courtage ..>  ServiceBourse : utilise
 ServiceBourse <|.. ServiceBourseHttpAdapter

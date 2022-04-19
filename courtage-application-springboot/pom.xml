@@ -13,10 +13,22 @@
 	<name>Courtage - Application - SpringBoot</name>
 	<description>Application SpringBoot de courtage.</description>
 
-	<properties>
-		<!-- La génération des métadonnées pour la réflexion sur les paramètres de méthodes sont nécessaires -->
-		<maven.compiler.parameters>true</maven.compiler.parameters>
-	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-ui</artifactId>
+				<version>1.6.4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
