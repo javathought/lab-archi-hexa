@@ -3,6 +3,12 @@
 
 Fonctionnalité: Gestion du portefeuille
 
+	# Ce scénario dépend de l'exécution des scénarios précédents
+	@E4 @E7 @E8
+	Scénario: Calcul de la valeur des actions sans portefeuille
+		Quand on demande au service de courtage le calcul de la valeur de tous les portefeuilles
+		Alors la valeur pour l'ensemble des portefeuilles est 0,0
+
 	@E1 @E2 @E3 @E4 @E5 @E6 @E7 @E8
 	Scénario: Récupération de l'identifiant d'un portefeuille
 		Quand on demande au service de courtage la création du portefeuille "FOO-1"
@@ -126,10 +132,23 @@ Fonctionnalité: Gestion du portefeuille
 		Et qu'on demande le calcul de la valeur du portefeuille "FOO-14"
 		Alors la valeur du portefeuille est 1,2
 
+	# Ce scénario dépend de l'exécution des scénarios précédents
 	@E4 @E7 @E8
-	Scénario: Calcul de la valeur de plusieurs portefeuilles non vides
+	Scénario: Calcul de la valeur des actions des portefeuilles ajoutés par les scénarios précédents
 		Soit les cours de bourse suivants :
 			| Action | Valeur |
+			| TEST   | 0,3    |
+			| CA     | 0,2    |
+			| SG     | 0,5    |
+		Quand on demande au service de courtage le calcul de la valeur de tous les portefeuilles
+		Alors la valeur pour l'ensemble des portefeuilles est 5,1
+
+	# Ce scénario dépend de l'exécution des scénarios précédents
+	@E4 @E7 @E8
+	Scénario: Calcul de la valeur de plusieurs portefeuilles supplémentaires non vides
+		Soit les cours de bourse suivants :
+			| Action | Valeur |
+			| TEST   | 0,3    |
 			| CA     | 0,2    |
 			| SG     | 0,5    |
 		Quand on demande au service de courtage la création du portefeuille "myCard"
@@ -141,12 +160,7 @@ Fonctionnalité: Gestion du portefeuille
 			| eWallet      | CA     | 6      |
 			| eWallet      | SG     | 5      |
 		Et qu'on demande au service de courtage le calcul de la valeur de tous les portefeuilles
-		Alors la valeur pour l'ensemble des portefeuilles est 6,1
-
-	@E4 @E7 @E8
-	Scénario: Calcul de la valeur des actions sans portefeuille
-		Quand on demande au service de courtage le calcul de la valeur de tous les portefeuilles
-		Alors la valeur pour l'ensemble des portefeuilles est 0,0
+		Alors la valeur pour l'ensemble des portefeuilles est 11,2
 
 	@E4 @E7 @E8
 	Scénario: Calcul de la valeur d'un portefeuille en ajoutant 2 actions au même titre
@@ -170,10 +184,12 @@ Fonctionnalité: Gestion du portefeuille
 		Quand on demande le calcul de la valeur du portefeuille "INCONNU"
 		Alors une exception est levée : Portefeuille non géré
 
+	# Ce scénario dépend de l'exécution des scénarios précédents
 	@E4 @E7 @E8
 	Scénario: La valeur totale du portefeuille doit être correctement recalculée si le cours des actions changent
 		Soit les cours de bourse suivants :
 			| Action | Valeur |
+			| TEST   | 0,3    |
 			| CA     | 0,2    |
 			| SG     | 0,5    |
 		Quand on demande au service de courtage la création du portefeuille "myCard"
@@ -185,10 +201,11 @@ Fonctionnalité: Gestion du portefeuille
 			| eWallet      | CA     | 6      |
 			| eWallet      | SG     | 5      |
 		Et qu'on demande au service de courtage le calcul de la valeur de tous les portefeuilles
-		Alors la valeur pour l'ensemble des portefeuilles est 6,1
+		Alors la valeur pour l'ensemble des portefeuilles est 17,7
 		Mais si les cours de bourse deviennent :
 			| Action | Valeur |
+			| TEST   | 0,1    |
 			| CA     | 1,1    |
 			| SG     | 0,7    |
 		Et qu'on demande au service de courtage le calcul de la valeur de tous les portefeuilles
-		Alors la valeur pour l'ensemble des portefeuilles est 15,1
+		Alors la valeur pour l'ensemble des portefeuilles est 44,5

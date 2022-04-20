@@ -39,9 +39,6 @@ public class CourtageSpringbootApplication {
 			.map(app -> app.port);
 	}
 
-	static void raz() {
-	}
-
 	@EventListener
 	public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
 		port = event.getWebServer().getPort();

@@ -44,8 +44,6 @@ public class CourtageStepDefinitions implements Fr {
 	private ValidatableResponse response;
 
 	public CourtageStepDefinitions() {
-		CourtageSpringbootApplication.raz();
-
 		// étape 5
 		Quand("on demande au service de courtage la création du portefeuille {string}", (String nomPortefeuille) ->
 			response = when()
@@ -163,7 +161,7 @@ public class CourtageStepDefinitions implements Fr {
 			response
 				.assertThat()
 				.statusCode(400)
-				.body(equalTo("Donnée(s) erronée(s): \n" + "\t" + message)));
+				.body(equalTo("Donnée(s) erronée(s):\n" + "\t" + message)));
 	}
 
 	private static class CoursBourse {

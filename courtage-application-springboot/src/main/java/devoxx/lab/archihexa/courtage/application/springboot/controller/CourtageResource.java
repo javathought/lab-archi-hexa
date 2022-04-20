@@ -1,5 +1,7 @@
 package devoxx.lab.archihexa.courtage.application.springboot.controller;
 
+import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleDejaExistantException;
+import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleNonGereException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class CourtageResource {
 	}
 
 	@PostMapping("/portefeuilles/{nomPortefeuille}")
-	public ResponseEntity<String> creationPortefeuille(@PathVariable(value = "nomPortefeuille") String nomPortefeuille) {
+	public ResponseEntity<String> creationPortefeuille(@PathVariable(value = "nomPortefeuille") String nomPortefeuille) throws PortefeuilleDejaExistantException {
 		// TODO
 
 		// Redirection vers l'URI de la ressource créé
@@ -36,6 +38,12 @@ public class CourtageResource {
 			.status(HttpStatus.BAD_REQUEST)
 			.body(e.getFieldErrors().stream()
 				.map(fe -> "\t" + fe.getField() + " " + fe.getDefaultMessage())
-				.collect(Collectors.joining("\n", "Donnée(s) erronée(s): \\n\"", "")));
+				.collect(Collectors.joining("\n", "Donnée(s) erronée(s):\n", "")));
+	}
+
+	@ExceptionHandler(PortefeuilleNonGereException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	ResponseEntity<String> handlePortefeuilleNonGereException(PortefeuilleNonGereException e) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Portefeuille non géré");
 	}
 }
