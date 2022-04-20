@@ -26,8 +26,8 @@ public class Portefeuille {
 
 	public void ajouterAction(Achat achat) {
 		actions.compute(
-			achat.getAction(),
-			(action, ancienNbActions) -> ofNullable(ancienNbActions).orElse(0) + achat.getNombre()
+			achat.action(),
+			(action, ancienNbActions) -> ofNullable(ancienNbActions).orElse(0) + achat.nombre()
 		);
 	}
 

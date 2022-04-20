@@ -17,7 +17,7 @@
 	</modules>
 
 	<properties>
-		<require.java.version>11</require.java.version>
+		<require.java.version>17</require.java.version>
 		<maven.compiler.target>${require.java.version}</maven.compiler.target>
 		<maven.compiler.source>${require.java.version}</maven.compiler.source>
 		<maven.compiler.release>${require.java.version}</maven.compiler.release>
