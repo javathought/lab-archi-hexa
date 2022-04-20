@@ -7,14 +7,18 @@ import devoxx.lab.archihexa.courtage.domain.model.Portefeuille;
 import devoxx.lab.archihexa.courtage.domain.port.secondaire.PortefeuilleRepository;
 import devoxx.lab.archihexa.courtage.domain.port.secondaire.ServiceBourse;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.math.BigDecimal;
 
 @Named
+@ApplicationScoped
 public class Courtage implements ServiceCourtage {
 	private final PortefeuilleRepository portefeuilleRepository;
 	private final ServiceBourse serviceBourse;
 
+	@Inject
 	public Courtage(PortefeuilleRepository portefeuilleRepository, ServiceBourse serviceBourse) {
 		this.portefeuilleRepository = portefeuilleRepository;
 		this.serviceBourse = serviceBourse;

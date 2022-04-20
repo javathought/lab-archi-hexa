@@ -1,6 +1,5 @@
 package devoxx.lab.archihexa.courtage.application.quarkus.controller;
 
-import devoxx.lab.archihexa.courtage.application.quarkus.service.ServiceCourtageFactory;
 import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleDejaExistantException;
 import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleNonGereException;
 import devoxx.lab.archihexa.courtage.domain.model.Achat;
@@ -24,8 +23,8 @@ public class CourtageResource {
 	private final ServiceCourtage serviceCourtage;
 
 	@Inject
-	public CourtageResource(ServiceCourtageFactory serviceCourtageFactory) {
-		this.serviceCourtage = serviceCourtageFactory.get();
+	public CourtageResource(ServiceCourtage serviceCourtage) {
+		this.serviceCourtage = serviceCourtage;
 	}
 
 	@GET
