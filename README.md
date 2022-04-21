@@ -1332,7 +1332,7 @@ package Domaine <<Hexagon>> {
 		String nom
 		Map<String, Integer> actions
 	}
-	class Achat {
+	class Achat <<modif>> {
 		String action
 		int nombre
 	}
