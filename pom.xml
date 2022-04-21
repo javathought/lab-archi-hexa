@@ -13,7 +13,8 @@
 	<modules>
 		<module>courtage-domain</module>
 		<module>courtage-application-springboot</module>
-	</modules>
+        <module>archunit</module>
+    </modules>
 
 	<properties>
 		<require.java.version>11</require.java.version>
