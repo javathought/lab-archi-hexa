@@ -692,6 +692,13 @@ Nous avons vu :
 
     <script>
       Reveal.initialize(options);
+
+      var clock = document.createElement('div');
+      clock.className = "clock";
+      document.body.append(clock);
+      setInterval(function () {
+	      (clock || {}).innerText = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+      }, 1000);
     </script>
   </body>
 </html>
