@@ -23,6 +23,12 @@ git switch main && ./mvnw dependency:go-offline
 - SSID ateliers lab : <code>devoxxfr-hol</code> 
 - Mot de passe : <code>hola#4321</code>
 
+<br/><br/>
+
+## Repo de code
+```bash
+git clone https://github.com/javathought/lab-archi-hexa
+```
 
 ----
 
@@ -848,10 +854,10 @@ services métier via API REST<br/>
 **... sans modifier le code métier** <span class="small">(ou presque)</span>
 
 * module `courtage-application-springboot`
-	* avec un 1er service REST :<br/>
-	  `/courtage/version`
-	* UI pour tester les APIs REST :<br/>
-	  <small><a href="http://localhost:8081/swagger-ui.html">http://localhost:8081/swagger-ui.html</a></small>
+	* avec un 1er service REST : `/courtage/version`
+* outils :<br/>
+  <small>UI pour tester les APIs REST : <a href="http://localhost:8081/swagger-ui.html">http://localhost:8081/swagger-ui.html</a></small><br/>
+  <small>UI pour visualiser la BDD : <a href="http://localhost:8081/h2-ui">http://localhost:8081/h2-ui</a></small><br/>
 
 ----
 
