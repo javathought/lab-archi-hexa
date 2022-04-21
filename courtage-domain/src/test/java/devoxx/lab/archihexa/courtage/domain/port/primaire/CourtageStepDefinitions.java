@@ -4,7 +4,9 @@ import devoxx.lab.archihexa.courtage.domain.model.Achat;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java8.DataTableEntryDefinitionBody;
 import io.cucumber.java8.Fr;
+import org.assertj.core.groups.Tuple;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.math.BigDecimal;
@@ -12,6 +14,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CourtageStepDefinitions implements Fr {
 	static {
@@ -22,6 +28,8 @@ public class CourtageStepDefinitions implements Fr {
 	private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	private final ServiceCourtage serviceCourtage = null /* // TODO */;
+
+	private Achat achat;
 
 	public CourtageStepDefinitions() {
 		// étape 1
@@ -82,11 +90,16 @@ public class CourtageStepDefinitions implements Fr {
 
 		// étape 8
 		DataTableType((Map<String, String> data) -> new Achat(data.get("action"), Integer.parseInt(data.get("nombre"))));
-		Soit("l'achat", (Achat achat) -> {
-			throw new io.cucumber.java8.PendingException();
-		});
+		Soit("l'achat", (Achat achat) ->
+			this.achat = achat);
 		Alors("l'achat est invalide avec l'erreur", (DataTable expected) -> {
-			throw new io.cucumber.java8.PendingException();
+			Set<ConstraintViolation<Achat>> violations = validator.validate(achat);
+			assertThat(violations)
+				.extracting("interpolatedMessage", "propertyPath.currentLeafNode.name")
+				.containsExactlyInAnyOrderElementsOf(
+					expected.asMaps().stream()
+						.map(e -> new Tuple(e.get("message"), e.get("propriété")))
+						.collect(Collectors.toList()));
 		});
 	}
 
