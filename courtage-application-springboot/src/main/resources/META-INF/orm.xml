@@ -5,6 +5,7 @@
 	<entity class="devoxx.lab.archihexa.courtage.domain.model.Portefeuille">
 		<attributes>
 			<id name="nom" access="FIELD"/>
+			<basic name="quantite" access="FIELD" />
 			<element-collection name="actions" target-class="java.lang.Integer" access="FIELD">
 				<map-key-column name="action"/>
 				<column name="nombre"/>

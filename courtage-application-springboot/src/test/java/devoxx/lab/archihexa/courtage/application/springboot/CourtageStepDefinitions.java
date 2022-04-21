@@ -162,6 +162,21 @@ public class CourtageStepDefinitions implements Fr {
 				.assertThat()
 				.statusCode(400)
 				.body(equalTo("Donnée(s) erronée(s):\n" + "\t" + message)));
+
+		// étape 9
+		Quand("on recherche les portefeuilles de plus de {int} action(s)", (Integer minQuantite) ->
+			response = when()
+				.get("/courtage/portefeuilles/q?minQuantite=" + minQuantite)
+				.then());
+
+		Alors("la réponse contient les portefeuilles :", (DataTable noms) ->
+			response
+				.assertThat()
+				.statusCode(200)
+				.body(
+					equalTo(noms.asList().toArray()))
+		);
+
 	}
 
 	private static class CoursBourse {

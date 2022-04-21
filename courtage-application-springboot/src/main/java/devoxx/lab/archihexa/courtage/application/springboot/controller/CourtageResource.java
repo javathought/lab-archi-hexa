@@ -1,9 +1,12 @@
 package devoxx.lab.archihexa.courtage.application.springboot.controller;
 
+import devoxx.lab.archihexa.courtage.application.springboot.adapters.persistence.PortefeuilleSpringDataCrudRepository;
 import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleDejaExistantException;
 import devoxx.lab.archihexa.courtage.domain.exception.PortefeuilleNonGereException;
 import devoxx.lab.archihexa.courtage.domain.model.Achat;
+import devoxx.lab.archihexa.courtage.domain.model.Portefeuille;
 import devoxx.lab.archihexa.courtage.domain.port.primaire.ServiceCourtage;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +16,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
+import static org.springframework.data.jpa.domain.Specification.where;
 
 @RestController
 @RequestMapping("/courtage")
 public class CourtageResource {
 	private final ServiceCourtage serviceCourtage;
+	private final PortefeuilleSpringDataCrudRepository repo;
 
-	public CourtageResource(ServiceCourtage serviceCourtage) {
+	public CourtageResource(ServiceCourtage serviceCourtage, PortefeuilleSpringDataCrudRepository repo) {
 		this.serviceCourtage = serviceCourtage;
+		this.repo = repo;
 	}
 
 	@GetMapping("/portefeuilles/{nomPortefeuille}")
@@ -67,6 +74,15 @@ public class CourtageResource {
 		return ResponseEntity.ok(serviceCourtage.calculerValeurEnsemblePortefeuilles().toString());
 	}
 
+	@GetMapping(value = "/portefeuilles/q",
+	produces = "application/json")
+	public ResponseEntity<List<String>> interrogerPortefeuilles(RecherchePortefeuille recherche) {
+		return ResponseEntity.ok(repo.findAll(recherche.asSpecifications())
+			.stream()
+			.map(Portefeuille::getNom)
+			.collect(Collectors.toList()));
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	ResponseEntity<String> handleConstraintViolationException(MethodArgumentNotValidException e) {
@@ -87,5 +103,22 @@ public class CourtageResource {
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	ResponseEntity<String> handlePortefeuilleNonGereException(PortefeuilleNonGereException e) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Portefeuille non géré");
+	}
+
+	public static class RecherchePortefeuille {
+		private int minQuantite;
+
+		public void setMinQuantite(int minQuantite) {
+			this.minQuantite = minQuantite;
+		}
+
+		public Specification<Portefeuille> asSpecifications() {
+			return
+				where((root, query, builder) ->
+					builder.greaterThanOrEqualTo(root.get("quantite"), this.minQuantite)
+				)
+				;
+		}
+
 	}
 }

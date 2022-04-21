@@ -14,7 +14,7 @@ spring:
     jpa:
         properties:
             hibernate:
-                show_sql: false
+                show_sql: true
                 format_sql: false
                 use_sql_comments: false
         database-platform: org.hibernate.dialect.H2Dialect
