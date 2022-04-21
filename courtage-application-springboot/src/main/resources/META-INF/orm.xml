@@ -15,4 +15,14 @@
 			</element-collection>
 		</attributes>
 	</entity>
+	<entity class="devoxx.lab.archihexa.courtage.application.springboot.adapters.persistence.VuePortefeuille" name="VuePortefeuille">
+		<named-native-query name="myQuery" >
+			<query><![CDATA[
+            select p.nom, sum(a.nombre) as quantite from portefeuille p
+                left join actions a where a.portefeuille_nom = p.nom
+                group by p.nom
+            ]]></query>
+		</named-native-query>
+	</entity>
+
 </entity-mappings>
